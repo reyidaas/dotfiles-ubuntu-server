@@ -29,5 +29,5 @@ if chezmoi git -- diff --cached --quiet; then
   echo "No changes to commit."
 else
   chezmoi git -- commit -m "Update: $(date --iso-8601=date)"
-  chezmoi git -- push -u origin master
+  chezmoi git -- push
 fi

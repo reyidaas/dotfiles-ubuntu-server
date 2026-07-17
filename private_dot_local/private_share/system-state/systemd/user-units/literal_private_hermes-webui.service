@@ -1,0 +1,19 @@
+[Unit]
+Description=Hermes WebUI
+Documentation=https://github.com/NousResearch/hermes-webui
+Requires=hermes-gateway.service
+After=network-online.target hermes-gateway.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/reyidaas/projects/hermes-webui
+ExecStart=/usr/bin/python3 /home/reyidaas/projects/hermes-webui/bootstrap.py --foreground --no-browser
+Restart=on-failure
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+Environment=HERMES_WEBUI_FOREGROUND=1
+Environment="PATH=/home/reyidaas/.hermes/hermes-agent/venv/bin:/home/reyidaas/.hermes/hermes-agent/node_modules/.bin:/home/reyidaas/.config/nvm/versions/node/v26.3.1/bin:/home/reyidaas/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+[Install]
+WantedBy=default.target
