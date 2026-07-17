@@ -16,9 +16,9 @@ systemctl list-unit-files --type=service,timer,socket,path --state=enabled --no-
   | awk '{print $1}' \
   | sort > "$state_dir/systemd/system-enabled.txt"
 
-systemctl list-unit-files --type=service,timer,socket,path --state=enabled --no-legend \
+systemctl --user list-unit-files --type=service,timer,socket,path --state=enabled --no-legend \
   | awk '{print $1}' \
-  | sort > "$state_dir/systemd/system-enabled.txt"
+  | sort > "$state_dir/systemd/user-enabled.txt"
 
 # Re-add only managed target files that changed.
 chezmoi re-add
