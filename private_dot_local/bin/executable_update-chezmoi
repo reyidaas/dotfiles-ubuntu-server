@@ -10,7 +10,7 @@ mkdir -p "$packages_dir" "$systemd_dir"
 # Keep only explicitly/manual installed APT packages.
 # This avoids recording every dependency that APT installed automatically.
 apt-mark showmanual | LC_ALL=C sort \
-  > "$packages_dir/apt-manual-packages.txt"
+  > "$packages_dir/apt-packages.txt"
 
 systemctl list-unit-files --type=service,timer,socket,path --state=enabled --no-legend \
   | awk '{print $1}' \
