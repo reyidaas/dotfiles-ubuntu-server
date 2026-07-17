@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+state_dir="$HOME/.local/share/system-state"
+packages_file="$state_dir/packages/apt-manual-packages.txt"
+system_units="$state_dir/systemd/system-enabled.txt"
+user_units="$state_dir/systemd/user-enabled.txt"
+
+sudo apt-get update
+
+if [[ -f "$packages_file" ]]; then
+  mapfile -t packages < <(grep -Ev '^[[:space:]]*(#|$)' "$packages_file")
+
+  if ((${#packages[@]})); then
+    sudo apt-get install --yes "${packages[@]}"
+  fi
+fi
+
+sudo systemctl daemon-reload
+systemctl --user daemon-reload
+
+if [[ -f "$system_units" ]]; then
+  while IFS= read -r unit; do
+    [[ -z "$unit" || "$unit" == \#* ]] && continue
+
+    if systemctl list-unit-files "$unit" >/dev/null 2>&1; then
+      sudo systemctl enable "$unit"
+    else
+      printf 'Missing system unit: %s\n' "$unit" >&2
+    fi
+  done < "$system_units"
+fi
+
+if [[ -f "$user_units" ]]; then
+  while IFS= read -r unit; do
+    [[ -z "$unit" || "$unit" == \#* ]] && continue
+
+    if systemctl --user list-unit-files "$unit" >/dev/null 2>&1; then
+      systemctl --user enable "$unit"
+    else
+      printf 'Missing user unit: %s\n' "$unit" >&2
+    fi
+  done < "$user_units"
+fi
+
+# Required for user services such as Hermes to stay running after logout/reboot.
+sudo loginctl enable-linger "$USER"
