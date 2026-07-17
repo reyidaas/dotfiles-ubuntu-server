@@ -1,0 +1,13 @@
+dirmngr.socket
+gpg-agent-browser.socket
+gpg-agent-extra.socket
+gpg-agent.socket
+gpg-agent-ssh.socket
+hermes-gateway.service
+hermes-webui.service
+keyboxd.socket
+launchpadlib-cache-clean.timer
+pk-debconf-helper.socket
+ssh-agent.socket
+user-session-migration.service
+xdg-user-dirs.service
