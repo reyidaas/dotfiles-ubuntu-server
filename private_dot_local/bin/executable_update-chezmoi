@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+state_dir="$HOME/.local/share/system-state"
+packages_dir="$state_dir/packages"
+systemd_dir="$state_dir/systemd"
+
+mkdir -p "$packages_dir" "$systemd_dir"
+
+# Keep only explicitly/manual installed APT packages.
+# This avoids recording every dependency that APT installed automatically.
+apt-mark showmanual | LC_ALL=C sort \
+  > "$packages_dir/apt-manual-packages.txt"
+
+systemctl list-unit-files --type=service,timer,socket,path --state=enabled --no-legend \
+  | awk '{print $1}' \
+  | sort > "$state_dir/systemd/system-enabled.txt"
+
+systemctl list-unit-files --type=service,timer,socket,path --state=enabled --no-legend \
+  | awk '{print $1}' \
+  | sort > "$state_dir/systemd/system-enabled.txt"
+
+# Re-add only managed target files that changed.
+chezmoi re-add
+
+chezmoi git -- add .
+
+if chezmoi git -- diff --cached --quiet; then
+  echo "No changes to commit."
+else
+  chezmoi git -- commit -m "Update: $(date --iso-8601=date)"
+  chezmoi git -- push -u origin master
+fi

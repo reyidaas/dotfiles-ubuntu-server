@@ -1,0 +1,35 @@
+-- require('kanagawa').setup({
+--     undercurl = true,
+--     commentStyle = { italic = true },
+--     functionStyle = { bold = true },
+--     keywordStyle = { italic = false },
+--     statementStyle = { bold = true },
+--     typeStyle = {},
+--     transparent = true,
+--     dimInactive = false,
+--     terminalColors = true,
+--     overrides = function(colors)
+--       local theme = colors.theme
+--       return {
+--           NormalFloat = { bg = "none" },
+--           FloatBorder = { bg = "none" },
+--           FloatTitle = { bg = "none" },
+--       }
+--     end,
+--     colors = {
+--         theme = { all = { ui = { bg_gutter = 'none', float = { bg = 'none' } } } },
+--     },
+--     theme = "dragon",
+--     background = {
+--         dark = "dragon",
+--         light = "lotus",
+--     },
+-- })
+
+-- Apply the colorscheme
+-- vim.cmd("colorscheme kanagawa")
+--
+-- Remove color flickering after starting neovim
+-- for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+--   vim.api.nvim_set_hl(0, group, {})
+-- end

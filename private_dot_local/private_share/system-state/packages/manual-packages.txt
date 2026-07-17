@@ -1,0 +1,8 @@
+- tpm
+- oh-my-zsh
+- zsh-autosuggestions
+- zsh-syntax-highlighting
+- nvm
+- hermes
+- hermes-webui
+- nordvpn

@@ -1,0 +1,5 @@
+[user]
+	email = rejdych.m.r@gmail.com
+	name = reyidaas
+[remote "origin"]
+	prune = true

@@ -1,0 +1,21 @@
+-- -- Apply colorscheme
+-- vim.cmd.colorscheme('melange')
+-- 
+-- -- Set Normal background to none
+-- vim.api.nvim_set_hl(0, "Normal", { fg = "#fbfbfb", bg = "NONE" })
+-- 
+-- -- Set NormalFloat background to none
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+-- 
+-- -- Set NormalBorder (or FloatBorder) background to none
+-- vim.api.nvim_set_hl(0, "NormalBorder", { bg = "NONE" })
+-- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+--
+-- Improve diagnostics readability
+-- vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#ff5555", bold = true })
+-- vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = "#ff5555", bold = true })
+-- vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = "#ff5555", undercurl = true })
+-- 
+-- -- Set transparent background
+-- vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+-- vim.cmd("highlight NonText guibg=NONE ctermbg=NONE")
