@@ -54,7 +54,6 @@ libxrandr2
 linux-generic
 ncurses-base
 ncurses-bin
-neovim
 nordvpn
 openssh-server
 python3-dev

@@ -8,6 +8,7 @@ hermes-webui.service
 keyboxd.socket
 launchpadlib-cache-clean.timer
 pk-debconf-helper.socket
+rowerowe-store.service
 ssh-agent.socket
 user-session-migration.service
 xdg-user-dirs.service

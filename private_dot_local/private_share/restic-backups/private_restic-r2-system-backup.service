@@ -1,0 +1,15 @@
+[Unit]
+Description=Restic system backup to Cloudflare R2
+Documentation=man:restic(1)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/restic-r2-system-backup
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+# Hardening. Keep broad read access because this unit intentionally backs up the system.
+PrivateTmp=true
+NoNewPrivileges=true

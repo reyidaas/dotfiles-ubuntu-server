@@ -1,0 +1,14 @@
+[Unit]
+Description=Run Restic system backup periodically
+
+[Timer]
+# Run daily at 03:30 when possible.
+OnCalendar=*-*-* 03:30:00
+# If the machine was off/asleep at that time, run after boot.
+Persistent=true
+# Add jitter so it does not always run at the exact same second.
+RandomizedDelaySec=30m
+Unit=restic-system-backup.service
+
+[Install]
+WantedBy=timers.target

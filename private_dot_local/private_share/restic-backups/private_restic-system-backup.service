@@ -1,0 +1,13 @@
+[Unit]
+Description=Restic system backup to external disk
+Documentation=man:restic(1)
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/restic-system-backup
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+# Treat missing external disk as a clean skip rather than a failed unit.
+SuccessExitStatus=75
