@@ -55,6 +55,7 @@ open-iscsi.service
 open-vm-tools.service
 polkit-agent-helper.socket
 pollinate.service
+restic-r2-system-backup.timer
 rsyslog.service
 secureboot-db.service
 setvtrgb.service
